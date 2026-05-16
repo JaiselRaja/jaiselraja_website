@@ -1,0 +1,359 @@
+{% extends "base.html" %}
+
+{% block title %}Blessed Bees - Band & Choir{% endblock %}
+
+{% block content %}
+<div class="hero" style="padding: 2rem 1rem;">
+    <h1>Blessed Bees</h1>
+    <p>As the drummer for the Blessed Bees band and choir, we have successfully participated and won several prestigious competitions across various locations.</p>
+</div>
+
+<style>
+.ac-carousel {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #000;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.ac-track {
+    position: relative;
+    width: 100%; height: 100%;
+}
+.ac-slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.ac-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+.ac-slide img, .ac-slide iframe {
+    width: 100%; height: 100%;
+    object-fit: contain;
+}
+.placeholder-slide {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-secondary); 
+    background: rgba(30,30,35,0.8); 
+    border: 1px dashed var(--surface-border);
+    font-size: 1.1rem;
+}
+.ac-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(1);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy fluid transition */
+    opacity: 0; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.ac-carousel:hover .ac-btn {
+    opacity: 1; /* Fade in buttons only when hovering over carousel */
+}
+.ac-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-50%) scale(1.15);
+}
+.ac-btn:active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(0.85);
+    transition: all 0.1s; /* Ultra-fast press down */
+}
+.ac-btn-left { left: 15px; }
+.ac-btn-right { right: 15px; }
+</style>
+
+<div class="events-sequence" style="max-width: 900px; margin: 0 auto; padding: 0 1rem;">
+
+    <!-- 1. Kariavilai and Kallikolam (2025) -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">1. Kariavilai and Kallikolam (2025)</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/kariavilai_1.jpg" alt="Event Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/kariavilai_2.jpg" alt="Event Image 2"></div>
+                <div class="ac-slide"><img src="/static/images/kariavilai_3.jpg" alt="Event Image 3"></div>
+                <div class="ac-slide"><img src="/static/images/kariavilai_4.jpg" alt="Event Image 4"></div>
+            </div>
+        </div>
+        
+        <div class="event-video" style="margin-top: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <iframe width="100%" height="450" src="https://www.youtube.com/embed/QozZDrb9Zxs?start=7227" title="Blessed Bees Live Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
+        </div>
+    </div>
+
+    <!-- 2. Orchestra with singer Velmurugan -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">2. Orchestra with singer Velmurugan</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/Orchestra_1.webp" alt="Orchestra Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/Orchestra_2.jpg" alt="Orchestra Image 2"></div>
+                <div class="ac-slide"><img src="/static/images/Orchestra_3.webp" alt="Orchestra Image 3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Alphonsa Annual Day Orchestra Program 2025 -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">3. Alphonsa Annual Day Orchestra Program 2025</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/AD25_1.jpg" alt="AD25 Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/AD25_2.jpg" alt="AD25 Image 2"></div>
+                <div class="ac-slide"><img src="/static/images/AD25_3.jpg" alt="AD25 Image 3"></div>
+            </div>
+        </div>
+        
+        <div class="event-video" style="margin-top: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <iframe width="100%" height="450" src="https://www.youtube.com/embed/aSuaFvcGSvA" title="Alphonsa Annual Day Orchestra" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
+        </div>
+    </div>
+
+    <!-- 4. Nanjil Natham (2nd Prize) (2024) -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">4. Nanjil Natham (2nd Prize) (2024)</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/NN_1.jpg" alt="NN Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/NN_2.jpg" alt="NN Image 2"></div>
+            </div>
+        </div>
+        
+        <div class="event-video" style="margin-top: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <iframe width="100%" height="450" src="https://www.youtube.com/embed/brNu01Uho0U?start=6207" title="Nanjil Natham Live Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
+        </div>
+    </div>
+
+    <!-- 5. Ponmalai (1st Prize) (2024) -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">5. Ponmalai (1st Prize) (2024)</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/P.jpeg" alt="Ponmalai Image 1"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Singing Competition held at St. John's Central School -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">6. Singing Competition held at St. John's Central School</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/SJC_1.jpg" alt="SJC Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/SJC_2.jpg" alt="SJC Image 2"></div>
+                <div class="ac-slide"><img src="/static/images/SJC_3.jpg" alt="SJC Image 3"></div>
+            </div>
+        </div>
+        
+        <div class="event-video" style="margin-top: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <iframe width="100%" height="450" src="https://www.youtube.com/embed/UkXWwUHIu0s" title="St. John's Central School Competition" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
+        </div>
+    </div>
+
+    <!-- 7. Kariavilai (3rd Prize) (2024) -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">7. Kariavilai (3rd Prize) (2024)</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/K24_1.jpg" alt="K24 Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/K24_2.jpg" alt="K24 Image 2"></div>
+                <div class="ac-slide"><img src="/static/images/K24_3.jpg" alt="K24 Image 3"></div>
+                <div class="ac-slide"><img src="/static/images/K24_4.jpg" alt="K24 Image 4"></div>
+                <div class="ac-slide"><img src="/static/images/K24_5.jpg" alt="K24 Image 5"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. St. John's College Group Singing (2nd Prize) -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">8. St. John's College Group Singing (2nd Prize)</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/SJS_1.jpg" alt="SJS Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/SJS_2.jpg" alt="SJS Image 2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Alphonsa Teachers Day 2024 11th std Singing -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">9. Alphonsa Teachers Day 2024 11th std Singing</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/ATS_1.jpg" alt="ATS Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/ATS_2.jpg" alt="ATS Image 2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. Alphonsa Annual Day Orchestra Program 2024 -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">10. Alphonsa Annual Day Orchestra Program 2024</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/AD24_1.jpeg" alt="AD24 Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/AD24_2.jpeg" alt="AD24 Image 2"></div>
+                <div class="ac-slide"><img src="/static/images/AD24_3.jpeg" alt="AD24 Image 3"></div>
+                <div class="ac-slide"><img src="/static/images/AD24_4.jpeg" alt="AD24 Image 4"></div>
+                <div class="ac-slide"><img src="/static/images/AD24_5.jpeg" alt="AD24 Image 5"></div>
+                <div class="ac-slide"><img src="/static/images/AD24_6.jpeg" alt="AD24 Image 6"></div>
+            </div>
+        </div>
+        
+        <div class="event-video" style="margin-top: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <iframe width="100%" height="450" src="https://www.youtube.com/embed/lXN0_M9vJxU" title="Alphonsa Annual Day Orchestra 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
+        </div>
+    </div>
+
+    <!-- 11. Kariavilai (1st Prize) (2023) -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">11. Kariavilai (1st Prize) (2023)</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/K23_1.jpeg" alt="K23 Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/K23_2.jpeg" alt="K23 Image 2"></div>
+                <div class="ac-slide"><img src="/static/images/K23_3.jpeg" alt="K23 Image 3"></div>
+                <div class="ac-slide"><img src="/static/images/K23_4.jpeg" alt="K23 Image 4"></div>
+            </div>
+        </div>
+        
+        <div class="event-video" style="margin-top: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <iframe width="100%" height="450" src="https://www.youtube.com/embed/r1gbeZXnFmA" title="Kariavilai 1st Prize 2023" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
+        </div>
+    </div>
+
+    <!-- 12. Melpuram (2nd Prize) (2023) -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">12. Melpuram (2nd Prize) (2023)</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/M_1.jpg" alt="M Image 1"></div>
+                <div class="ac-slide"><img src="/static/images/M_2.jpg" alt="M Image 2"></div>
+                <div class="ac-slide"><img src="/static/images/M_3.jpg" alt="M Image 3"></div>
+                <div class="ac-slide"><img src="/static/images/M_4.jpg" alt="M Image 4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 13. Alphonsa School Day Group Singing (10th Std) -->
+    <div class="event-block card" style="margin-bottom: 3rem; padding: 2rem;">
+        <h2 style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-top: 0;">13. Alphonsa School Day Group Singing (10th Std)</h2>
+        <div class="ac-carousel" data-interval="3000">
+            <div class="ac-track">
+                <div class="ac-slide active"><img src="/static/images/10thstd.jpg" alt="10th Std Singing"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const carousels = document.querySelectorAll('.ac-carousel');
+        const eventBlocks = document.querySelectorAll('.event-block');
+        
+        // Setup Intersection Observer on the entire event block (which includes the title)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Triggers when just 10% of the block (like the title) comes into view
+        };
+
+        const blockObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const carousel = entry.target.querySelector('.ac-carousel');
+                if (carousel) {
+                    if (entry.isIntersecting) {
+                        carousel.dataset.isVisible = "true";
+                    } else {
+                        carousel.dataset.isVisible = "false";
+                    }
+                }
+            });
+        }, observerOptions);
+
+        eventBlocks.forEach(block => {
+            blockObserver.observe(block);
+        });
+
+        carousels.forEach(carousel => {
+            let isHovered = false;
+            carousel.addEventListener('mouseenter', () => isHovered = true);
+            carousel.addEventListener('mouseleave', () => isHovered = false);
+
+            const track = carousel.querySelector('.ac-track');
+            if(!track) return;
+            const slides = Array.from(track.querySelectorAll('.ac-slide'));
+            
+            if(slides.length <= 1) return; // No auto-scroll needed if only 1 item
+
+            // Inject manual navigation buttons dynamically
+            const btnLeft = document.createElement('button');
+            btnLeft.className = 'ac-btn ac-btn-left';
+            btnLeft.innerHTML = '&#10094;'; // Left Arrow
+
+            const btnRight = document.createElement('button');
+            btnRight.className = 'ac-btn ac-btn-right';
+            btnRight.innerHTML = '&#10095;'; // Right Arrow
+
+            carousel.appendChild(btnLeft);
+            carousel.appendChild(btnRight);
+
+            let currentIndex = 0;
+            let intervalId = null;
+            const intervalTime = parseInt(carousel.getAttribute('data-interval') || 3000);
+
+            const nextSlide = (manual = false) => {
+                // If it's an auto-tick, don't swap if hovered or hidden
+                if(!manual && (isHovered || carousel.dataset.isVisible !== "true")) return; 
+                
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add('active');
+            };
+
+            const prevSlide = () => {
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                slides[currentIndex].classList.add('active');
+            };
+
+            const resetInterval = () => {
+                clearInterval(intervalId);
+                intervalId = setInterval(() => nextSlide(false), intervalTime);
+            };
+
+            btnLeft.addEventListener('click', () => {
+                prevSlide();
+                resetInterval();
+            });
+
+            btnRight.addEventListener('click', () => {
+                nextSlide(true); // force swap on manual click
+                resetInterval();
+            });
+
+            // Start auto-scroll loop
+            intervalId = setInterval(() => nextSlide(false), intervalTime);
+        });
+    });
+</script>
+{% endblock %}

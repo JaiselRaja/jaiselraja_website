@@ -1,0 +1,378 @@
+{% extends "base.html" %}
+
+{% block title %}Class 12 Study Notes — Jaisel's Hub{% endblock %}
+
+{% block content %}
+<div class="notes-hub">
+
+    <!-- Hero Section -->
+    <div class="notes-hero">
+        <div class="notes-hero__orb notes-hero__orb--1"></div>
+        <div class="notes-hero__orb notes-hero__orb--2"></div>
+        <div class="notes-hero__orb notes-hero__orb--3"></div>
+
+        <span class="notes-hero__badge">📚 Tamil Nadu State Board</span>
+        <h1 class="notes-hero__title">Class 12 Study Notes</h1>
+        <p class="notes-hero__subtitle">
+            Meticulously crafted notes with step-by-step derivations, visual explanations, and structured problem-solving approaches — designed to make every concept crystal clear.
+        </p>
+    </div>
+
+    <!-- Subject Cards -->
+    <div class="notes-subjects">
+        <!-- Physics -->
+        <a href="/notes/Physics" class="subject-tile" id="tile-physics">
+            <div class="subject-tile__glow subject-tile__glow--physics"></div>
+            <div class="subject-tile__icon">
+                <svg viewBox="0 0 100 100" width="64" height="64" class="subject-tile__svg">
+                    <circle cx="50" cy="50" r="8" fill="currentColor" opacity="0.9"/>
+                    <ellipse cx="50" cy="50" rx="40" ry="16" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6">
+                        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="8s" repeatCount="indefinite"/>
+                    </ellipse>
+                    <ellipse cx="50" cy="50" rx="40" ry="16" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6">
+                        <animateTransform attributeName="transform" type="rotate" from="60 50 50" to="420 50 50" dur="8s" repeatCount="indefinite"/>
+                    </ellipse>
+                    <ellipse cx="50" cy="50" rx="40" ry="16" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6">
+                        <animateTransform attributeName="transform" type="rotate" from="120 50 50" to="480 50 50" dur="8s" repeatCount="indefinite"/>
+                    </ellipse>
+                </svg>
+            </div>
+            <h2 class="subject-tile__name">Physics</h2>
+            <p class="subject-tile__desc">Derivations, visual explanations, and step-by-step problem solving for Mechanics to Modern Physics.</p>
+            <div class="subject-tile__meta">
+                <span class="subject-tile__count">{{ physics_count }} topic{{ 's' if physics_count != 1 else '' }}</span>
+                <span class="subject-tile__arrow">→</span>
+            </div>
+        </a>
+
+        <!-- Chemistry -->
+        <a href="/notes/Chemistry" class="subject-tile" id="tile-chemistry">
+            <div class="subject-tile__glow subject-tile__glow--chemistry"></div>
+            <div class="subject-tile__icon">
+                <svg viewBox="0 0 100 100" width="64" height="64" class="subject-tile__svg">
+                    <path d="M35 15 L35 55 L20 80 Q17 86 22 90 L78 90 Q83 86 80 80 L65 55 L65 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+                    <line x1="30" y1="15" x2="70" y2="15" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                    <circle cx="45" cy="70" r="4" fill="currentColor" opacity="0.5">
+                        <animate attributeName="cy" values="72;65;72" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="55" cy="75" r="3" fill="currentColor" opacity="0.4">
+                        <animate attributeName="cy" values="76;68;76" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="50" cy="68" r="3.5" fill="currentColor" opacity="0.45">
+                        <animate attributeName="cy" values="70;62;70" dur="1.8s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+            <h2 class="subject-tile__name">Chemistry</h2>
+            <p class="subject-tile__desc">Short notes, reaction methods, derivations, and visual representations across Organic, Inorganic, and Physical Chemistry.</p>
+            <div class="subject-tile__meta">
+                <span class="subject-tile__count">{{ chemistry_count }} topic{{ 's' if chemistry_count != 1 else '' }}</span>
+                <span class="subject-tile__arrow">→</span>
+            </div>
+        </a>
+
+        <!-- Maths -->
+        <a href="/notes/Maths" class="subject-tile" id="tile-maths">
+            <div class="subject-tile__glow subject-tile__glow--maths"></div>
+            <div class="subject-tile__icon">
+                <svg viewBox="0 0 100 100" width="64" height="64" class="subject-tile__svg">
+                    <text x="50" y="58" text-anchor="middle" font-size="22" font-weight="700" fill="currentColor" opacity="0.7" font-family="serif">&#8747;</text>
+                    <text x="28" y="38" text-anchor="middle" font-size="14" fill="currentColor" opacity="0.4" font-family="serif">&#8721;</text>
+                    <text x="74" y="42" text-anchor="middle" font-size="13" fill="currentColor" opacity="0.4" font-family="serif">&#960;</text>
+                    <text x="30" y="78" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.35" font-family="serif">&#8734;</text>
+                    <text x="72" y="76" text-anchor="middle" font-size="14" fill="currentColor" opacity="0.4" font-family="serif">&#916;</text>
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2" stroke-dasharray="4 4">
+                        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="20s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+            <h2 class="subject-tile__name">Mathematics</h2>
+            <p class="subject-tile__desc">Solved problems with required formulas, organized chapter-wise from Calculus to Discrete Mathematics.</p>
+            <div class="subject-tile__meta">
+                <span class="subject-tile__count">{{ maths_count }} topic{{ 's' if maths_count != 1 else '' }}</span>
+                <span class="subject-tile__arrow">→</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- Why These Notes -->
+    <div class="notes-why">
+        <h2 class="notes-why__title">Why These Notes?</h2>
+        <div class="notes-why__grid">
+            <div class="notes-why__card">
+                <div class="notes-why__icon">🔬</div>
+                <h3>Complete Derivations</h3>
+                <p>Every derivation is written step-by-step, ensuring no crucial intermediate step is ever skipped.</p>
+            </div>
+            <div class="notes-why__card">
+                <div class="notes-why__icon">🎨</div>
+                <h3>Visual Explanations</h3>
+                <p>Complex concepts are accompanied by diagrams and visual representations for intuitive understanding.</p>
+            </div>
+            <div class="notes-why__card">
+                <div class="notes-why__icon">📝</div>
+                <h3>Structured Approach</h3>
+                <p>Systematic problem-solving methods that build confidence and clarity in tackling exam questions.</p>
+            </div>
+            <div class="notes-why__card">
+                <div class="notes-why__icon">⏱️</div>
+                <h3>Time-Saving</h3>
+                <p>Concise and focused — spend less time searching and more time understanding and practicing.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* ========================= */
+/* NOTES HUB — Scoped Styles */
+/* ========================= */
+
+.notes-hub {
+    position: relative;
+}
+
+/* --- Hero --- */
+.notes-hero {
+    text-align: center;
+    padding: 4rem 1rem 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.notes-hero__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+    animation: orbFloat 12s ease-in-out infinite alternate;
+}
+.notes-hero__orb--1 {
+    width: 350px; height: 350px;
+    background: #0078d4;
+    top: -80px; left: -60px;
+}
+.notes-hero__orb--2 {
+    width: 280px; height: 280px;
+    background: #00c6ff;
+    top: 30px; right: -40px;
+    animation-delay: -4s;
+}
+.notes-hero__orb--3 {
+    width: 200px; height: 200px;
+    background: #a855f7;
+    bottom: -60px; left: 40%;
+    animation-delay: -8s;
+}
+
+@keyframes orbFloat {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -20px) scale(1.15); }
+}
+
+.notes-hero__badge {
+    display: inline-block;
+    background: rgba(0, 120, 212, 0.12);
+    border: 1px solid rgba(0, 120, 212, 0.25);
+    color: #4db8ff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 24px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+}
+
+.notes-hero__title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin: 0 0 1rem;
+    background: linear-gradient(135deg, #ffffff 30%, #a0a0a5 70%, #0078d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.notes-hero__subtitle {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* --- Subject Tiles --- */
+.notes-subjects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.subject-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface-color);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--surface-border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem 2rem;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.45s ease,
+                border-color 0.4s ease;
+}
+
+.subject-tile:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.subject-tile__glow {
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    top: -60px; right: -60px;
+    filter: blur(60px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.subject-tile:hover .subject-tile__glow {
+    opacity: 0.2;
+}
+
+.subject-tile__glow--physics { background: #0078d4; }
+.subject-tile__glow--chemistry { background: #10b981; }
+.subject-tile__glow--maths { background: #a855f7; }
+
+#tile-physics:hover {
+    box-shadow: 0 20px 60px rgba(0, 120, 212, 0.2);
+}
+#tile-chemistry:hover {
+    box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+}
+#tile-maths:hover {
+    box-shadow: 0 20px 60px rgba(168, 85, 247, 0.2);
+}
+
+.subject-tile__icon {
+    margin-bottom: 1.5rem;
+}
+
+#tile-physics .subject-tile__icon { color: #4db8ff; }
+#tile-chemistry .subject-tile__icon { color: #34d399; }
+#tile-maths .subject-tile__icon { color: #c084fc; }
+
+.subject-tile__name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+}
+
+.subject-tile__desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 auto;
+    padding-bottom: 1.5rem;
+}
+
+.subject-tile__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--surface-border);
+}
+
+.subject-tile__count {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.subject-tile__arrow {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.subject-tile:hover .subject-tile__arrow {
+    transform: translateX(6px);
+    color: var(--text-primary);
+}
+
+/* --- Why These Notes --- */
+.notes-why {
+    margin-top: 5rem;
+    padding-bottom: 2rem;
+}
+
+.notes-why__title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(135deg, #ffffff 50%, #a0a0a5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.notes-why__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.notes-why__card {
+    background: var(--surface-color);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--surface-border);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.notes-why__card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.notes-why__icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.notes-why__card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+}
+
+.notes-why__card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .notes-subjects {
+        grid-template-columns: 1fr;
+    }
+    .notes-hero {
+        padding: 3rem 1rem 2rem;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Class 12 {{ subject }} Notes{% endblock %}
+
+{% block content %}
+<div class="card" style="margin-bottom: 2rem;">
+    <h1>{{ subject }} Notes</h1>
+    {% if subject == 'Physics' %}
+    <p>Class 12 Physics notes help students study derivations thoroughly. They also include visual representations of concepts, especially for topics where the textbook has no visuals or lacks proper visual explanation. Students are requested to read the textbook along with these notes for a proper understanding of concepts.</p>
+    {% else %}
+    <p>Browse and download the Class 12 {{ subject }} notes below.</p>
+    {% endif %}
+</div>
+
+<div class="accordion-container">
+    {% if topics %}
+        {% for topic in topics %}
+        <div class="accordion-item card" style="margin-bottom: 1rem; overflow: hidden; padding: 0;">
+            <button class="accordion-header" style="width: 100%; text-align: left; background: none; border: none; padding: 1.5rem; color: var(--text-primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0;">{{ topic }}</h3>
+                <span class="icon" style="transition: transform 0.3s; font-size: 1.2rem;">&#10095;</span>
+            </button>
+            <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: var(--background);">
+                <div style="padding: 0 1.5rem 1.5rem 1.5rem;">
+                    {# Filter notes to match this topic exactly #}
+                    {% set topic_notes = [] %}
+                    {% for note in notes %}
+                        {% if note.lesson_topic == topic %}
+                            {% set _ = topic_notes.append(note) %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if topic_notes %}
+                        <ul class="topic-list" style="margin: 0;">
+                            {% for note in topic_notes %}
+                            <li class="topic-item" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--surface-border);">
+                                <div class="topic-info">
+                                    <h4 style="margin: 0 0 0.5rem 0;">📄 {{ note.file_name }}</h4>
+                                    <div class="topic-meta" style="color: var(--text-secondary); font-size: 0.9rem;">Uploaded on {{ note.upload_date.strftime('%Y-%m-%d') }}</div>
+                                </div>
+                                <div class="actions" style="display: flex; gap: 0.8rem;">
+                                    <a href="/{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
+                                    <a href="/{{ note.file_path }}" class="button button-download" download="{{ note.file_name }}">Download</a>
+                                    
+                                    {% if is_admin %}
+                                    <form action="/api/delete-note/{{ note.id }}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to permanently delete this note?');">
+                                        <button type="submit" class="button button-delete">Delete</button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p style="text-align: center; color: var(--text-secondary); margin: 0; padding: 1rem;">No materials uploaded yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="card">
+            <p style="text-align: center; color: var(--text-secondary); padding: 2rem 0;">No topics available for {{ subject }}.</p>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const item = header.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const icon = header.querySelector('.icon');
+            
+            // Toggle current active state
+            if(item.classList.contains('active')) {
+                item.classList.remove('active');
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+                header.style.borderBottom = 'none';
+            } else {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 50 + "px"; // Add some buffer
+                icon.style.transform = 'rotate(90deg)';
+                header.style.borderBottom = '1px solid var(--surface-border)';
+            }
+        });
+    });
+</script>
+{% endblock %}

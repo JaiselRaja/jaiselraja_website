@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Note{% endblock %}
+
+{% block content %}
+<div class="card form-container">
+    <h1 style="margin-bottom: 2rem;">Upload a New Note</h1>
+    
+    <form action="/api/upload-note" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <select name="subject" id="subject" required>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Maths">Mathematics</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="lesson_topic">Lesson Topic</label>
+            <!-- Dropdown replaced text input to ensure notes exactly match the layout -->
+            <select name="lesson_topic" id="lesson_topic" required>
+                <!-- Populated dynamically -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="file">PDF File</label>
+            <input type="file" name="file" id="file" accept="application/pdf" required>
+        </div>
+
+        <button type="submit" class="button" style="width: 100%; margin-top: 1rem;">Upload to Repository</button>
+    </form>
+</div>
+
+<script>
+    const TOPIC_MAP = {
+        "Physics": [
+            "Electrostatics", "Current Electricity", "Magnetism and Magnetic Effects of Electric Current", "Electromagnetic Induction and Alternating Current", "Electromagnetic Waves", "Ray Optics", "Wave Optics", "Dual Nature of Radiation and Matter", "Atomic and Nuclear Physics", "Electronics and Communication", "Recent Developments in Physics"
+        ],
+        "Chemistry": [
+            "Metallurgy", "P-Block Elements - I", "P-Block Elements - II", "Transition and Inner Transition Elements", "Coordination Chemistry", "Solid State", "Chemical Kinetics", "Ionic Equilibrium", "Electro Chemistry", "Surface Chemistry", "Hydroxy Compounds and Ethers", "Carbonyl Compounds and Carboxylic Acids", "Organic Nitrogen Compounds", "Biomolecules", "Chemistry in Everyday Life"
+        ],
+        "Maths": [
+            "Applications of Matrices and Determinants", "Complex Numbers", "Theory of Equations", "Inverse Trigonometric Functions", "Two Dimensional Analytical Geometry-II", "Applications of Vector Algebra", "Applications of Differential Calculus", "Differentials and Partial Derivatives", "Applications of Integration", "Ordinary Differential Equations", "Probability Distributions", "Discrete Mathematics"
+        ]
+    };
+
+    const subjectSelect = document.getElementById("subject");
+    const lessonTopicSelect = document.getElementById("lesson_topic");
+
+    function renderTopics() {
+        const subject = subjectSelect.value;
+        const topics = TOPIC_MAP[subject] || [];
+        lessonTopicSelect.innerHTML = "";
+        topics.forEach(topic => {
+            const opt = document.createElement("option");
+            opt.value = topic;
+            opt.textContent = topic;
+            lessonTopicSelect.appendChild(opt);
+        });
+    }
+
+    subjectSelect.addEventListener("change", renderTopics);
+    
+    // Initial Render
+    document.addEventListener("DOMContentLoaded", renderTopics);
+</script>
+{% endblock %}
