@@ -41,7 +41,7 @@
                                 <div class="actions" style="display: flex; gap: 0.8rem;">
                                     {% if note.file_path.startswith('http') %}
                                     <a href="{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
-                                    <a href="{{ get_download_link(note.file_path) }}" class="button button-download" download>Download</a>
+                                    <button type="button" onclick="triggerHiddenDownload('{{ get_download_link(note.file_path) }}')" class="button button-download">Download</button>
                                     {% else %}
                                     <a href="/{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
                                     <a href="/{{ note.file_path }}" class="button button-download" download="{{ note.file_name }}">Download</a>
@@ -92,5 +92,17 @@
             }
         });
     });
+
+    // Hidden iframe trick to prevent Android Intents from intercepting Google Drive downloads
+    function triggerHiddenDownload(url) {
+        let iframe = document.getElementById('hidden-download-iframe');
+        if (!iframe) {
+            iframe = document.createElement('iframe');
+            iframe.id = 'hidden-download-iframe';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+        }
+        iframe.src = url;
+    }
 </script>
 {% endblock %}
