@@ -47,3 +47,15 @@
 
 {% endblock %}
 
+{% block extra_head %}
+<style>
+    /* Homepage specific background for dark mode */
+    body[data-theme="dark"] {
+        background-image: url('/static/images/starry-night.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+</style>
+{% endblock %}

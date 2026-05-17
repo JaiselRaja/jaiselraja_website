@@ -6,6 +6,7 @@
     <title>{% block title %}Jaisel's Profile{% endblock %}</title>
     <link rel="stylesheet" href="/static/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
     <script>
         // Check local storage, default to dark mode ALWAYS
         const savedTheme = localStorage.getItem('theme');
