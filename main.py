@@ -1,6 +1,7 @@
 import os
 import secrets
 import base64
+import re
 from fastapi import FastAPI, Depends, Request, Form, UploadFile, File, HTTPException, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -19,6 +20,16 @@ app = FastAPI(title="Jaisel's Profile")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
+
+def get_drive_download_link(url: str) -> str:
+    # Match standard drive links: https://drive.google.com/file/d/FILE_ID/view
+    match = re.search(r'/d/([a-zA-Z0-9_-]+)', url)
+    if match:
+        return f"https://drive.google.com/uc?export=download&id={match.group(1)}"
+    return url
+
+templates.env.globals['get_download_link'] = get_drive_download_link
+
 security = HTTPBasic()
 
 # Setup Admin Credentials
@@ -141,26 +152,17 @@ async def read_upload(request: Request, username: str = Depends(get_current_user
 async def upload_note(
     subject: str = Form(...),
     lesson_topic: str = Form(...),
-    file: UploadFile = File(...),
+    file_name: str = Form(...),
+    drive_link: str = Form(...),
     db: Session = Depends(get_db),
     username: str = Depends(get_current_user)
 ):
-    upload_dir = "static/uploads"
-    os.makedirs(upload_dir, exist_ok=True)
-    
-    file_path = os.path.join(upload_dir, file.filename)
-    
-    # Save the file to disk
-    with open(file_path, "wb") as buffer:
-        content = await file.read()
-        buffer.write(content)
-        
     # Save to the database
     db_note = models.Note(
         subject=subject.capitalize(),
         lesson_topic=lesson_topic,
-        file_name=file.filename,
-        file_path=file_path.replace("\\", "/") # cross-platform path formatting for URL use
+        file_name=file_name,
+        file_path=drive_link
     )
     db.add(db_note)
     db.commit()
@@ -189,12 +191,12 @@ async def delete_note(
         
     subject = note.subject
     
-    # Delete from filesystem safely
-    if os.path.exists(note.file_path):
+    # Delete from filesystem safely (only for legacy local files)
+    if not note.file_path.startswith("http") and os.path.exists(note.file_path):
         try:
             os.remove(note.file_path)
         except Exception:
-            pass 
+            pass
             
     # Delete from DB
     db.delete(note)

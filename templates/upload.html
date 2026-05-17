@@ -6,7 +6,7 @@
 <div class="card form-container">
     <h1 style="margin-bottom: 2rem;">Upload a New Note</h1>
     
-    <form action="/api/upload-note" method="post" enctype="multipart/form-data">
+    <form action="/api/upload-note" method="post">
         <div class="form-group">
             <label for="subject">Subject</label>
             <select name="subject" id="subject" required>
@@ -18,18 +18,22 @@
 
         <div class="form-group">
             <label for="lesson_topic">Lesson Topic</label>
-            <!-- Dropdown replaced text input to ensure notes exactly match the layout -->
             <select name="lesson_topic" id="lesson_topic" required>
                 <!-- Populated dynamically -->
             </select>
         </div>
 
         <div class="form-group">
-            <label for="file">PDF File</label>
-            <input type="file" name="file" id="file" accept="application/pdf" required>
+            <label for="file_name">Note Title (e.g. Current Electricity Part 1)</label>
+            <input type="text" name="file_name" id="file_name" placeholder="Enter the name of the note" required>
         </div>
 
-        <button type="submit" class="button" style="width: 100%; margin-top: 1rem;">Upload to Repository</button>
+        <div class="form-group">
+            <label for="drive_link">Google Drive Share Link</label>
+            <input type="url" name="drive_link" id="drive_link" placeholder="https://drive.google.com/file/d/..." required>
+        </div>
+
+        <button type="submit" class="button" style="width: 100%; margin-top: 1rem;">Add Note Link</button>
     </form>
 </div>
 

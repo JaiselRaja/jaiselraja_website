@@ -39,8 +39,13 @@
                                     <div class="topic-meta" style="color: var(--text-secondary); font-size: 0.9rem;">Uploaded on {{ note.upload_date.strftime('%Y-%m-%d') }}</div>
                                 </div>
                                 <div class="actions" style="display: flex; gap: 0.8rem;">
+                                    {% if note.file_path.startswith('http') %}
+                                    <a href="{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
+                                    <a href="{{ get_download_link(note.file_path) }}" class="button button-download" target="_blank">Download</a>
+                                    {% else %}
                                     <a href="/{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
                                     <a href="/{{ note.file_path }}" class="button button-download" download="{{ note.file_name }}">Download</a>
+                                    {% endif %}
                                     
                                     {% if is_admin %}
                                     <form action="/api/delete-note/{{ note.id }}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to permanently delete this note?');">
