@@ -755,3 +755,64 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(20px);
 }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .nav-brand {
+    font-size: 1.8rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  main {
+    padding: 1.5rem 1rem;
+  }
+  .card {
+    padding: 1.2rem;
+  }
+  .hero {
+    padding: 3rem 0.5rem;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .subject-grid, .events-grid {
+    grid-template-columns: 1fr;
+  }
+  .topic-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  .topic-item .actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .topic-item .actions .button {
+    flex: 1 1 calc(50% - 0.8rem);
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+  }
+  .topic-item .actions form {
+    width: 100%;
+    display: block !important;
+  }
+  .topic-item .actions form .button {
+    width: 100%;
+  }
+  .accordion-header {
+    padding: 1rem !important;
+  }
+}
