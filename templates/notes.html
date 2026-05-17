@@ -41,7 +41,7 @@
                                 <div class="actions" style="display: flex; gap: 0.8rem;">
                                     {% if note.file_path.startswith('http') %}
                                     <a href="{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
-                                    <a href="{{ get_download_link(note.file_path) }}" class="button button-download" target="_blank">Download</a>
+                                    <a href="{{ get_download_link(note.file_path) }}" class="button button-download" download>Download</a>
                                     {% else %}
                                     <a href="/{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
                                     <a href="/{{ note.file_path }}" class="button button-download" download="{{ note.file_name }}">Download</a>
