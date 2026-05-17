@@ -6,6 +6,17 @@
     <title>{% block title %}Jaisel's Profile{% endblock %}</title>
     <link rel="stylesheet" href="/static/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        // Check local storage or system preference on load to prevent flash
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -14,7 +25,9 @@
             <a href="/">Home</a>
             <a href="/about">About</a>
             <a href="/blessed-bees">Blessed Bees</a>
-
+            <button id="theme-toggle" aria-label="Toggle Theme" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-secondary); padding: 0 0.5rem; transition: color 0.3s ease; display: flex; align-items: center;">
+                🌙
+            </button>
         </nav>
     </header>
 
@@ -25,5 +38,40 @@
     <footer>
         &copy; 2026 Jaisel | Built with FastAPI
     </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        function updateToggleIcon() {
+            if (htmlElement.getAttribute('data-theme') === 'dark') {
+                themeToggle.innerHTML = '☀️';
+            } else {
+                themeToggle.innerHTML = '🌙';
+            }
+        }
+        
+        // Initial setup
+        updateToggleIcon();
+        
+        // Handle click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcon();
+        });
+        
+        // Listen for system changes if no local preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                htmlElement.setAttribute('data-theme', newTheme);
+                updateToggleIcon();
+            }
+        });
+    </script>
 </body>
 </html>
