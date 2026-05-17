@@ -71,6 +71,33 @@
     {% endif %}
 </div>
 
+<style>
+    .download-toast {
+        position: fixed;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 123, 255, 0.25);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        text-align: center;
+        min-width: 250px;
+    }
+
+    .download-toast.show {
+        top: 30px;
+    }
+</style>
+
 <script>
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => {
@@ -93,8 +120,31 @@
         });
     });
 
+    function showDownloadToast() {
+        let toast = document.getElementById('download-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'download-toast';
+            toast.className = 'download-toast';
+            toast.innerText = 'File is being downloaded...';
+            document.body.appendChild(toast);
+        }
+        
+        // Remove and re-add class to restart animation if clicked multiple times
+        toast.classList.remove('show');
+        void toast.offsetWidth; // Force reflow
+        toast.classList.add('show');
+        
+        // Auto hide after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
     // Hidden iframe trick to prevent Android Intents from intercepting Google Drive downloads
     function triggerHiddenDownload(url) {
+        showDownloadToast();
+        
         let iframe = document.getElementById('hidden-download-iframe');
         if (!iframe) {
             iframe = document.createElement('iframe');
