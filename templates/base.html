@@ -60,6 +60,26 @@
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // Sync theme across tabs and browser history (bfcache)
+        function syncTheme() {
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'light') {
+                htmlElement.setAttribute('data-theme', 'light');
+                themeToggle.checked = false;
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
+            }
+        }
+
+        window.addEventListener('pageshow', (e) => {
+            if (e.persisted) syncTheme();
+        });
+
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'theme') syncTheme();
+        });
     </script>
 </body>
 </html>
