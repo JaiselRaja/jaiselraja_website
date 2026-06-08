@@ -38,13 +38,21 @@
                                     <h4 style="margin: 0 0 0.5rem 0;">📄 {{ note.file_name }}</h4>
                                     <div class="topic-meta" style="color: var(--text-secondary); font-size: 0.9rem;">Uploaded on {{ note.upload_date.strftime('%Y-%m-%d') }}</div>
                                 </div>
-                                <div class="actions" style="display: flex; gap: 0.8rem;">
+                                <div class="actions" style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
                                     {% if note.file_path.startswith('http') %}
                                     <a href="{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
                                     <button type="button" onclick="triggerHiddenDownload('{{ get_download_link(note.file_path) }}')" class="button button-download">Download</button>
                                     {% else %}
                                     <a href="/{{ note.file_path }}" class="button button-open" target="_blank">Open</a>
                                     <a href="/{{ note.file_path }}" class="button button-download" download="{{ note.file_name }}">Download</a>
+                                    {% endif %}
+
+                                    {% if note.printable_file_path %}
+                                        {% if note.printable_file_path.startswith('http') %}
+                                        <button type="button" onclick="triggerHiddenDownload('{{ get_download_link(note.printable_file_path) }}')" class="button button-download">Download in Printable form</button>
+                                        {% else %}
+                                        <a href="/{{ note.printable_file_path }}" class="button button-download" download="{{ note.file_name }} (Printable)">Download in Printable form</a>
+                                        {% endif %}
                                     {% endif %}
                                     
                                     {% if is_admin %}

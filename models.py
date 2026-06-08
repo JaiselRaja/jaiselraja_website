@@ -10,4 +10,5 @@ class Note(Base):
     lesson_topic = Column(String, index=True)
     file_name = Column(String)
     file_path = Column(String)
+    printable_file_path = Column(String, nullable=True)
     upload_date = Column(DateTime, default=datetime.datetime.utcnow)

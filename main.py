@@ -14,6 +14,27 @@ import models
 # Create tables if not exists
 models.Base.metadata.create_all(bind=engine)
 
+# Auto-migrate database schema changes
+def migrate_db():
+    import sqlite3
+    db_path = "notes.db"
+    if os.path.exists(db_path):
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        try:
+            cursor.execute("PRAGMA table_info(notes)")
+            columns = [col[1] for col in cursor.fetchall()]
+            if "printable_file_path" not in columns:
+                cursor.execute("ALTER TABLE notes ADD COLUMN printable_file_path TEXT")
+                conn.commit()
+                print("Database migrated successfully: added printable_file_path column.")
+        except Exception as e:
+            print("Error during database auto-migration:", e)
+        finally:
+            conn.close()
+
+migrate_db()
+
 app = FastAPI(title="Jaisel's Profile")
 
 # Mount static directory for CSS and uploaded files
@@ -154,15 +175,20 @@ async def upload_note(
     lesson_topic: str = Form(...),
     file_name: str = Form(...),
     drive_link: str = Form(...),
+    printable_link: str = Form(None),
     db: Session = Depends(get_db),
     username: str = Depends(get_current_user)
 ):
+    # Clean printable link
+    printable_link_clean = printable_link.strip() if (printable_link and printable_link.strip()) else None
+
     # Save to the database
     db_note = models.Note(
         subject=subject.capitalize(),
         lesson_topic=lesson_topic,
         file_name=file_name,
-        file_path=drive_link
+        file_path=drive_link,
+        printable_file_path=printable_link_clean
     )
     db.add(db_note)
     db.commit()
