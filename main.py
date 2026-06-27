@@ -3,7 +3,7 @@ import secrets
 import base64
 import re
 from fastapi import FastAPI, Depends, Request, Form, UploadFile, File, HTTPException, status
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
@@ -39,6 +39,10 @@ app = FastAPI(title="Jaisel's Profile")
 
 # Mount static directory for CSS and uploaded files
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse("static/images/favicon.svg")
 
 templates = Jinja2Templates(directory="templates")
 

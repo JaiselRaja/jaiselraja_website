@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0078d4" />
+      <stop offset="100%" stop-color="#00c6ff" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Rounded Hexagon representing science/math structure -->
+  <path d="M 256 36
+           L 446.5 146
+           L 446.5 366
+           L 256 476
+           L 65.5 366
+           L 65.5 146
+           Z" 
+        fill="none" 
+        stroke="url(#gradient)" 
+        stroke-width="36" 
+        stroke-linejoin="round" 
+        stroke-linecap="round" />
+
+  <!-- Inner Monogram J representing Jaisel -->
+  <path d="M 310 160
+           L 310 310
+           A 54 54 0 0 1 256 364
+           A 54 54 0 0 1 202 310
+           L 202 275" 
+        fill="none" 
+        stroke="url(#gradient)" 
+        stroke-width="48" 
+        stroke-linejoin="round" 
+        stroke-linecap="round" />
+
+  <!-- A gradient tittle/spark above the J representing a hub -->
+  <circle cx="310" cy="110" r="24" fill="url(#gradient)" />
+</svg>
